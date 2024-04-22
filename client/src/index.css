@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply mx-auto max-w-full px-3 sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px];
+  }
+
+  .leading-auto {
+    @apply leading-[normal];
+  }
+
+  .btn {
+    @apply rounded-sm bg-secondary px-2 py-1 text-white md:px-8 md:py-4;
+  }
+}
+
+@media (min-width: 768px) {
+  #box {
+    background-color: red;
+  }
+}
+
+#logo:hover {
+  transform: translate(10px, -10px);
+  text-decoration: underline;
+  transition-duration: 3s;
+  transition-property: all;
+}
+
+.slick-arrow {
+  background-color: red;
+}
+
+.slick-prev {
+  left: 0px;
+}
+
+.slick-next {
+  right: 0px;
+}
+
+.slick-arrow:hover {
+  background-color: yellow;
+}

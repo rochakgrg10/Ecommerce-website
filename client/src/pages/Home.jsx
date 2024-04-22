@@ -1,0 +1,195 @@
+import React, { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Header from "../components/Header";
+import Banner from "../components/home/Banner";
+import Chair from "../components/home/Chair";
+import chair1 from "/assets/chair1.png";
+import chair2 from "/assets/chair2.png";
+import chair3 from "/assets/chair3.png";
+import chair4 from "/assets/chair4.png";
+import LatestProduct from "../components/home/LatestProduct";
+
+function Home() {
+  const [products, setProducts] = useState([]);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  let banners = [
+    {
+      background: "bg-banner1",
+      label: "Best Furniture For Your Castle....",
+      heading: " New Furniture Collection Trends in 2020",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.",
+      redirectUrl: "/blogs",
+    },
+    {
+      background: "bg-banner2",
+      label: "Second Furniture For Your Castle....",
+      heading: " Second Furniture Collection Trends in 2020",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.",
+      redirectUrl: "/offers",
+    },
+    {
+      background: "bg-banner3",
+      label: "Third Furniture For Your Castle....",
+      heading: " Third Furniture Collection Trends in 2020",
+      description:
+        "Third ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.",
+      redirectUrl: "/products",
+    },
+  ];
+
+  let chairs = [
+    {
+      image: chair1,
+      title: "Cantilever chair 1",
+      code: "Y523201",
+      price: "$4000",
+    },
+    {
+      image: chair2,
+      title: "Cantilever chair 2",
+      code: "Y523202",
+      price: "$4400",
+    },
+    {
+      image: chair3,
+      title: "Cantilever chair 3",
+      code: "Y523203",
+      price: "$5500",
+    },
+    {
+      image: chair4,
+      title: "Cantilever chair 4",
+      code: "y-23244",
+      price: "$6700",
+    },
+  ];
+
+  let latestProducts = [
+    {
+      image: "/assets/latestProduct1.png",
+      title: "Comfort Handy Craft",
+      currentPrice: "$200",
+      previousPrice: "$250",
+    },
+    {
+      image: "/assets/latestProduct2.png",
+      title: "Comfort Handy Craft 2",
+      currentPrice: "$200",
+      previousPrice: "$250",
+    },
+    {
+      image: "/assets/latestProduct3.png",
+      title: "Comfort Handy Craft 3",
+      currentPrice: "$200",
+      previousPrice: "$250",
+    },
+    {
+      image: "/assets/latestProduct4.png",
+      title: "Comfort Handy Craft 4",
+      currentPrice: "$200",
+      previousPrice: "$250",
+    },
+    {
+      image: "/assets/latestProduct5.png",
+      title: "Comfort Handy Craft 5",
+      currentPrice: "$200",
+      previousPrice: "$250",
+    },
+    {
+      image: "/assets/latestProduct6.png",
+      title: "Comfort Handy Craft 6",
+      currentPrice: "$200",
+      previousPrice: "$250",
+    },
+  ];
+
+  useEffect(() => {
+    let url = `https://ecommerce-sagartmg2.vercel.app/api/products/trending`;
+    axios.get(url).then((res) => {
+      setProducts(res.data.data);
+    });
+  }, []);
+
+  return (
+    <>
+      {JSON.stringify(products)}
+      <div>
+        <Header />
+        <Slider {...settings}>
+          {banners.map((el) => {
+            return (
+              <Banner
+                background={el.background}
+                label={el.label}
+                heading={el.heading}
+                description={el.description}
+                redirectUrl={el.redirectUrl}
+              />
+            );
+          })}
+        </Slider>
+
+        <div className=" mt-20 grid justify-items-center gap-4 sm:grid-cols-2  md:mt-[219px] md:grid-cols-2 lg:grid-cols-4">
+          {products.map((el) => {
+            return (
+              <Chair
+                image={el.image}
+                title={el.name}
+                code={el.code}
+                price={el.price}
+              />
+            );
+          })}
+        </div>
+
+        <div className="container mb-14 mt-16">
+          <p className="text-center text-[23px] font-bold text-[#151875] md:text-[42px]">
+            Latest Products
+          </p>
+          <div className="mt-5 flex justify-center gap-2 text-sm md:gap-4 md:text-[18px]">
+            <a href="" className="hover:text-secondary">
+              New Arrival
+            </a>
+            <a href="" className="hover:text-secondary">
+              Best Seller
+            </a>
+            <a href="" className="hover:text-secondary">
+              Featured
+            </a>
+            <a href="" className="hover:text-secondary">
+              Special Offer
+            </a>
+          </div>
+          <div className="mt-[32px] grid justify-items-center gap-4 sm:grid-cols-2 md:mt-[58px] md:grid-cols-3">
+            {latestProducts.map((el) => {
+              return (
+                <LatestProduct
+                  image={el.image}
+                  title={el.title}
+                  currentPrice={el.currentPrice}
+                  previousPrice={el.previousPrice}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Home;
