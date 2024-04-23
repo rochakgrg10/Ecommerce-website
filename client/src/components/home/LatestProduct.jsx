@@ -29,7 +29,7 @@ function LatestProduct(props) {
           <p className="text-[12px] font-bold text-[#151875] md:text-sm">
             {currentPrice}
           </p>
-          <p className="text-[10px] text-[#FB2448] md:text-[12px]">
+          <p className="text-[10px] text-[#FB2448] line-through md:text-[12px]">
             {previousPrice}
           </p>
         </div>

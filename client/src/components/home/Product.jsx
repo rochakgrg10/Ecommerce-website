@@ -4,7 +4,7 @@ import { BsCart2 } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineZoomIn } from "react-icons/ai";
 
-function Chair(props) {
+function Product(props) {
   const [isHover, setIsHover] = useState(false);
   const { image, title, code, price } = props;
 
@@ -12,7 +12,7 @@ function Chair(props) {
     <div
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      className="group relative  flex h-[400px] w-[270px] flex-col shadow-md sm:mx-auto "
+      className="group relative  flex h-[400px] w-[220px] flex-col shadow-md sm:mx-auto "
     >
       {isHover && (
         <div className="absolute left-0 top-0 flex gap-2 p-3">
@@ -21,9 +21,9 @@ function Chair(props) {
           <AiOutlineZoomIn />
         </div>
       )}
-      <div className="grow bg-[#F6F7FB] pb-4 pl-7 pr-7 pt-10">
-        <img src={image} className="" alt="" />
-      </div>
+      <img src={image} className="h-[65%] w-[100%] object-cover" alt="" />
+      {/* <div className="grow bg-[#F6F7FB] pb-4 pl-7 pr-7 pt-10">
+      </div> */}
       {isHover && (
         <button className="absolute left-[32%] top-[50%] bg-[#08D15F] px-1 py-1 text-sm text-white">
           View Details
@@ -47,4 +47,4 @@ function Chair(props) {
   );
 }
 
-export default Chair;
+export default Product;

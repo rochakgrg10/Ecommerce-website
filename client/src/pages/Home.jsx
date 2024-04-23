@@ -4,17 +4,16 @@ import { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import Header from "../components/Header";
 import Banner from "../components/home/Banner";
-import Chair from "../components/home/Chair";
-import chair1 from "/assets/chair1.png";
-import chair2 from "/assets/chair2.png";
-import chair3 from "/assets/chair3.png";
-import chair4 from "/assets/chair4.png";
+import Product from "../components/home/Product";
 import LatestProduct from "../components/home/LatestProduct";
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const settings = {
     dots: true,
@@ -51,7 +50,7 @@ function Home() {
     },
   ];
 
-  let chairs = [
+  /*  let chairs = [
     {
       image: chair1,
       title: "Cantilever chair 1",
@@ -76,7 +75,7 @@ function Home() {
       code: "y-23244",
       price: "$6700",
     },
-  ];
+  ]; */
 
   let latestProducts = [
     {
@@ -119,9 +118,17 @@ function Home() {
 
   useEffect(() => {
     let url = `https://ecommerce-sagartmg2.vercel.app/api/products/trending`;
-    axios.get(url).then((res) => {
-      setProducts(res.data.data);
-    });
+    setTimeout(() => {
+      axios
+        .get(url)
+        .then((res) => {
+          setProducts(res.data.data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          throw new Error("Something went wrong");
+        });
+    }, 3000);
   }, []);
 
   return (
@@ -143,10 +150,21 @@ function Home() {
           })}
         </Slider>
 
-        <div className=" mt-20 grid justify-items-center gap-4 sm:grid-cols-2  md:mt-[219px] md:grid-cols-2 lg:grid-cols-4">
+        {isLoading && (
+          <div className="container mt-20 grid justify-items-center  gap-1 sm:grid-cols-2 md:mt-[219px] md:grid-cols-4">
+            <Skeleton className="h-[400px] w-[220px]" />
+            <Skeleton className="h-[400px] w-[220px]" />
+            <Skeleton className="h-[400px] w-[220px]" />
+            <Skeleton className="h-[400px] w-[220px]" />
+          </div>
+        )}
+
+        {!isLoading && products.length == 0 && <p>No products</p>}
+
+        <div className="container  mt-20 grid justify-items-center gap-4 sm:grid-cols-2  md:mt-[219px] md:grid-cols-2 lg:grid-cols-4">
           {products.map((el) => {
             return (
-              <Chair
+              <Product
                 image={el.image}
                 title={el.name}
                 code={el.code}
