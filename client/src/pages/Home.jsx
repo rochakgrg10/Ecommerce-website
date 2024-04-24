@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import Header from "../components/Header";
+import Header from "../components/common/Header";
 import Banner from "../components/home/Banner";
 import Product from "../components/home/Product";
 import LatestProduct from "../components/home/LatestProduct";
@@ -128,14 +128,12 @@ function Home() {
         .catch((err) => {
           throw new Error("Something went wrong");
         });
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
     <>
-      {JSON.stringify(products)}
       <div>
-        <Header />
         <Slider {...settings}>
           {banners.map((el) => {
             return (
@@ -165,6 +163,7 @@ function Home() {
           {products.map((el) => {
             return (
               <Product
+                _id={el._id}
                 image={el.image}
                 title={el.name}
                 code={el.code}

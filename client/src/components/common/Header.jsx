@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { CiMail } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
@@ -24,7 +25,7 @@ export default function Header() {
               </p>
             </div>
             <div className="">
-              <span>login</span>
+              <Link to={"/login"}>login</Link>
               <span className="ml-4">cart</span>
             </div>
           </nav>
@@ -48,10 +49,9 @@ export default function Header() {
               >
                 <RxCross2 />
               </button>
-              <a href="" className="text-secondary">
+              <Link to={"/"} className="text-secondary">
                 home
-                {/* <span className="text-[9px] ml-1">v</span> */}
-              </a>
+              </Link>
               <a href="" className="hover:text-secondary">
                 products
               </a>

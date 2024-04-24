@@ -4,12 +4,13 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import RootElement from "./components/RootElement";
+import RootElement from "./components/common/RootElement";
 
 import "./index.css";
+import Products from "./pages/products/Products";
+import ProductDetail from "./pages/products/ProductDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +25,19 @@ function App() {
         {
           path: "login",
           element: <Login />,
+        },
+        {
+          path: "products",
+          children: [
+            {
+              path: "",
+              element: <Products />,
+            },
+            {
+              path: ":slug",
+              element: <ProductDetail />,
+            },
+          ],
         },
       ],
     },
