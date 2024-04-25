@@ -19,6 +19,9 @@ export default {
         banner2: "url('/assets/banner2.jpg')",
         banner3: "url('/assets/banner3.jpg')",
       },
+      listStyleImage: {
+        arrow: 'url("/assets/listArrow.png")',
+      },
     },
   },
   plugins: [],

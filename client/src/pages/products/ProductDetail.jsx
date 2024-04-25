@@ -19,6 +19,16 @@ function ProductDetail() {
   return (
     <>
       {/* {console.log(product)} */}
+      <div className="mb-[80px] flex flex-col gap-2 bg-[#F6F5FF] p-[50px] md:mb-[121px] md:gap-4">
+        <p className="text-base font-bold text-[#101750] md:text-[36px]">
+          Product Details
+        </p>
+        <div className="flex gap-3 text-xs md:text-base">
+          <p>Home</p>
+          <p>Pages</p>
+          <p className="text-secondary">Product Details</p>
+        </div>
+      </div>
       <div className="container grid items-stretch gap-2 p-6 shadow-xl md:grid-cols-2">
         <div className="grid  gap-2">
           <div className="grid grid-cols-3 items-stretch gap-2">
@@ -67,6 +77,82 @@ function ProductDetail() {
               <img src="/assets/instaLogo.png" alt="" />
               <img src="/assets/twitterLogo.png" alt="" />
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-[53px] bg-[#F9F8FE] p-4 md:mt-[133px]">
+        <div className="container grid gap-4">
+          <div className="flex cursor-pointer gap-2 text-[14px] font-semibold  text-[#151875] md:text-[24px]">
+            <p className="hover:underline">Description</p>
+            <p className="hover:underline">Additional Info</p>
+            <p className="hover:underline">Reviews</p>
+            <p className="hover:underline">Video</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className="font-semibold text-[#151875]">Varius tempor.</p>
+            <p className="text-xs text-[#A9ACC6] md:text-[16px]">
+              Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor
+              ornare faucibus vel sed et eleifend habitasse amet. Montes, mauris
+              varius ac est bibendum. Scelerisque a, risus ac ante. Velit
+              consectetur neque, elit, aliquet. Non varius proin sed urna,
+              egestas consequat laoreet diam tincidunt. Magna eget faucibus cras
+              justo, tortor sed donec tempus. Imperdiet consequat, quis diam
+              arcu, nulla lobortis justo netus dis. Eu in fringilla vulputate
+              nunc nec. Dui, massa viverr .
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className="font-semibold text-[#151875]">More details</p>
+            <ul className="list-image-arrow p-2 text-xs text-[#A9ACC6] md:text-[16px]">
+              <li>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus ds
+                diam arcu, nulla lobortis justo netus dis. Eu in fringilla
+                vulputate nunc nec. Dui, massa viverr .
+              </li>
+              <li>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus ds
+                diam arcu, nulla lobortis justo netus dis. Eu in fringilla
+                vulputate nunc nec. Dui, massa viverr .
+              </li>
+              <li>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus ds
+                diam arcu, nulla lobortis justo netus dis. Eu in fringilla
+                vulputate nunc nec. Dui, massa viverr .
+              </li>
+              <li>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus ds
+                diam arcu, nulla lobortis justo netus dis. Eu in fringilla
+                vulputate nunc nec. Dui, massa viverr .
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mt-[50px] grid gap-4 md:mt-[126px]">
+        <p className="font-bold text-[#101750] md:text-[36px]">
+          Related Products
+        </p>
+        <div className="grid gap-4 md:grid-cols-4">
+          <div>
+            <img src={product.image} alt="" />
+            <p>{product.name}</p>
+            <p>${product.price}</p>
+          </div>
+          <div>
+            <img src={product.image} alt="" />
+            <p>{product.name}</p>
+            <p>${product.price}</p>
+          </div>
+          <div>
+            <img src={product.image} alt="" />
+            <p>{product.name}</p>
+            <p>${product.price}</p>
+          </div>
+          <div>
+            <img src={product.image} alt="" />
+            <p>{product.name}</p>
+            <p>${product.price}</p>
           </div>
         </div>
       </div>
