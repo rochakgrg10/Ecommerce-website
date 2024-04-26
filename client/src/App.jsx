@@ -11,6 +11,7 @@ import RootElement from "./components/common/RootElement";
 import "./index.css";
 import Products from "./pages/products/Products";
 import ProductDetail from "./pages/products/ProductDetail";
+import Signup from "./pages/Signup";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +26,10 @@ function App() {
         {
           path: "login",
           element: <Login />,
+        },
+        {
+          path: "signup",
+          element: <Signup />,
         },
         {
           path: "products",

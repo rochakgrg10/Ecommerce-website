@@ -3,10 +3,24 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
+import BreadCrumb from "../../components/common/BreadCrumb";
 
 function ProductDetail() {
   const [product, setProduct] = useState({});
+  const [relatedProducts, setRelatedProducts] = useState([]);
+
   const params = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`https://ecommerce-sagartmg2.vercel.app/api/products`)
+      .then((res) => {
+        setRelatedProducts(res.data.products);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     axios
@@ -18,28 +32,13 @@ function ProductDetail() {
 
   return (
     <>
-      {/* {console.log(product)} */}
-      <div className="mb-[80px] flex flex-col gap-2 bg-[#F6F5FF] p-[50px] md:mb-[121px] md:gap-4">
-        <p className="text-base font-bold text-[#101750] md:text-[36px]">
-          Product Details
-        </p>
-        <div className="flex gap-3 text-xs md:text-base">
-          <p>Home</p>
-          <p>Pages</p>
-          <p className="text-secondary">Product Details</p>
+      {console.log(relatedProducts)}
+      <BreadCrumb title="Related Products" />
+      <div className="container grid gap-4 p-6 shadow-xl md:grid-cols-2">
+        <div>
+          <img src={product.image} className="h-[100%] w-[100%]" />
         </div>
-      </div>
-      <div className="container grid items-stretch gap-2 p-6 shadow-xl md:grid-cols-2">
-        <div className="grid  gap-2">
-          <div className="grid grid-cols-3 items-stretch gap-2">
-            <img src={product.image} className="object-cover" />
-            <img src={product.image} alt="" />
-            <img src={product.image} alt="" />
-          </div>
-          <div>
-            <img src={product.image} className="object-fill" />
-          </div>
-        </div>
+
         <div className="flex flex-grow flex-col gap-4">
           <p className="font-semibold text-[#0D134E] md:text-[36px]">
             {product.name}
@@ -134,26 +133,15 @@ function ProductDetail() {
           Related Products
         </p>
         <div className="grid gap-4 md:grid-cols-4">
-          <div>
-            <img src={product.image} alt="" />
-            <p>{product.name}</p>
-            <p>${product.price}</p>
-          </div>
-          <div>
-            <img src={product.image} alt="" />
-            <p>{product.name}</p>
-            <p>${product.price}</p>
-          </div>
-          <div>
-            <img src={product.image} alt="" />
-            <p>{product.name}</p>
-            <p>${product.price}</p>
-          </div>
-          <div>
-            <img src={product.image} alt="" />
-            <p>{product.name}</p>
-            <p>${product.price}</p>
-          </div>
+          {relatedProducts.map((el) => {
+            return (
+              <div>
+                <img src={el.image} alt="" />
+                <p>{el.name}</p>
+                <p>${el.price}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

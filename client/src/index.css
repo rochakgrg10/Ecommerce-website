@@ -16,6 +16,14 @@
   .btn {
     @apply rounded-sm bg-secondary px-2 py-1 text-white md:px-8 md:py-4;
   }
+
+  .form-group {
+    @apply mb-4;
+  }
+
+  .form-control {
+    @apply border p-2;
+  }
 }
 
 @media (min-width: 768px) {

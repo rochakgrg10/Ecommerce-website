@@ -8,7 +8,7 @@ function Footer() {
 
       <div className="grid grid-flow-row gap-4 bg-[#EEEFFB] p-[50px] sm:grid-cols-2 md:grid-cols-4 md:place-content-center">
         <div className="flex flex-col gap-4">
-          <p className="text-[20px] font-bold">Hekto</p>
+          <p className="text-[20px] font-bold md:text-[38px]">Hekto</p>
           <div className="flex">
             <input
               type="text"
@@ -19,15 +19,17 @@ function Footer() {
               Sign Up
             </button>
           </div>
-          <p className="text-xs font-normal text-[#8A8FB9]">Contact Info</p>
-          <p className="text-xs font-normal text-[#8A8FB9]">
+          <p className="text-xs font-normal text-[#8A8FB9] md:text-base">
+            Contact Info
+          </p>
+          <p className="text-xs font-normal text-[#8A8FB9] md:text-base">
             17 Princess Road, London, Greater London NW1 8JR, UK
           </p>
         </div>
 
         <div className="flex flex-col gap-4">
-          <p className="font-bold">Catagories</p>
-          <ul className="flex flex-col gap-2 text-xs font-normal text-[#8A8FB9]">
+          <p className="font-semibold md:text-[22px]">Catagories</p>
+          <ul className="flex flex-col gap-2 text-xs font-normal text-[#8A8FB9] md:text-base">
             <li>Laptops & Computers</li>
             <li>Cameras & Photography</li>
             <li>Smart Phones & Tablets</li>
@@ -37,8 +39,8 @@ function Footer() {
         </div>
 
         <div className="flex flex-col gap-4">
-          <p className="font-bold">Customer Care</p>
-          <ul className="flex flex-col gap-2 text-xs font-normal text-[#8A8FB9]">
+          <p className="font-semibold md:text-[22px]">Customer Care</p>
+          <ul className="flex flex-col gap-2 text-xs font-normal text-[#8A8FB9] md:text-base">
             <li>My Account</li>
             <li>Discount</li>
             <li>Returns</li>
@@ -48,8 +50,8 @@ function Footer() {
         </div>
 
         <div className="flex flex-col gap-4">
-          <p className="font-bold">Pages</p>
-          <ul className="flex flex-col gap-2 text-xs font-normal text-[#8A8FB9]">
+          <p className="font-semibold md:text-[22px]">Pages</p>
+          <ul className="flex flex-col gap-2 text-xs font-normal text-[#8A8FB9] md:text-base">
             <li>Blog</li>
             <li>Browse the Shop</li>
             <li>Category</li>

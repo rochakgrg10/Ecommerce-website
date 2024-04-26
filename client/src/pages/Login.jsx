@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -23,7 +24,7 @@ function Login() {
       <div className="mx-auto mt-[67px] flex w-[302px] items-center justify-center p-[28px] shadow-lg md:w-[544px]">
         <div className="flex w-[240px] flex-col justify-center gap-2 md:w-[433px]">
           <p className="text-center text-xl font-bold md:text-[32px]">Login</p>
-          <p className="text-xs text-[#9096B2]">
+          <p className="text-xs text-[#9096B2] md:text-xl">
             Please login using account detail bellow.
           </p>
           <input
@@ -32,12 +33,14 @@ function Login() {
             placeholder="Email Address"
           />
           <input type="text" className="border p-2" placeholder="Password" />
-          <p className="text-xs text-[#9096B2]">Forgot your password?</p>
+          <p className="text-xs text-[#9096B2] md:text-xl">
+            Forgot your password?
+          </p>
           <button className="w-full bg-secondary py-2 text-sm text-white">
             Sign in
           </button>
-          <p className="text-xs text-[#9096B2]">
-            Don't have an Account?Create account
+          <p className="text-xs text-[#9096B2] md:text-xl">
+            Don't have an Account? <Link to={"/signup"}>Create account</Link>
           </p>
         </div>
       </div>
