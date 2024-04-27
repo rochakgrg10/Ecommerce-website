@@ -5,11 +5,17 @@ import { Link } from "react-router-dom";
 import BreadCrumb from "../components/common/BreadCrumb";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { VscEye } from "react-icons/vsc";
+import { VscEyeClosed } from "react-icons/vsc";
 export default function Signup() {
   const [isLoading, setIsLoading] = useState(false);
   const [formError, setFormError] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleEye = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleSubmit = (e) => {
     setIsLoading(true);
@@ -85,12 +91,25 @@ export default function Signup() {
             </div>
             <div>
               <label htmlFor="password">Password</label>
-              <input
-                type="text"
-                name="password"
-                className="w-full border p-2"
-                placeholder="Password"
-              />
+              <div className="relative flex">
+                <input
+                  type={isOpen ? "text" : "password"}
+                  name="password"
+                  className=" w-full border p-2"
+                  placeholder="Password"
+                />
+                {isOpen ? (
+                  <VscEyeClosed
+                    className="absolute right-1 cursor-pointer self-center text-xl"
+                    onClick={toggleEye}
+                  />
+                ) : (
+                  <VscEye
+                    className="absolute right-1 cursor-pointer self-center text-xl"
+                    onClick={toggleEye}
+                  />
+                )}
+              </div>
               {isError && (
                 <p className="text-xs text-red-600 md:text-base">
                   {errorMessage("password")}

@@ -12,6 +12,7 @@ import "./index.css";
 import Products from "./pages/products/Products";
 import ProductDetail from "./pages/products/ProductDetail";
 import Signup from "./pages/Signup";
+import LeftSideBar from "./pages/LeftSideBar";
 
 function App() {
   const router = createBrowserRouter([
@@ -30,6 +31,10 @@ function App() {
         {
           path: "signup",
           element: <Signup />,
+        },
+        {
+          path: "sidebar",
+          element: <LeftSideBar />,
         },
         {
           path: "products",

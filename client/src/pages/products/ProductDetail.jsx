@@ -13,9 +13,9 @@ function ProductDetail() {
 
   useEffect(() => {
     axios
-      .get(`https://ecommerce-sagartmg2.vercel.app/api/products`)
+      .get(`https://ecommerce-sagartmg2.vercel.app/api/products/trending`)
       .then((res) => {
-        setRelatedProducts(res.data.products);
+        setRelatedProducts(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -32,14 +32,14 @@ function ProductDetail() {
 
   return (
     <>
-      {console.log(relatedProducts)}
       <BreadCrumb title="Related Products" />
       <div className="container grid gap-4 p-6 shadow-xl md:grid-cols-2">
-        <div>
-          <img src={product.image} className="h-[100%] w-[100%]" />
-        </div>
+        <img
+          src={product.image}
+          className="w-[100%] self-stretch object-cover"
+        />
 
-        <div className="flex flex-grow flex-col gap-4">
+        <div className="flex flex-grow flex-col gap-4 p-4">
           <p className="font-semibold text-[#0D134E] md:text-[36px]">
             {product.name}
           </p>
@@ -71,7 +71,7 @@ function ProductDetail() {
           <p className="font-semibold text-[#151875]">Tags</p>
           <div className="flex gap-4 font-semibold text-[#151875]">
             <p>Share </p>
-            <div className="flex gap-2">
+            <div className="flex gap-2 p-2">
               <img src="/assets/fbicon.png" alt="" />
               <img src="/assets/instaLogo.png" alt="" />
               <img src="/assets/twitterLogo.png" alt="" />
@@ -135,10 +135,13 @@ function ProductDetail() {
         <div className="grid gap-4 md:grid-cols-4">
           {relatedProducts.map((el) => {
             return (
-              <div>
-                <img src={el.image} alt="" />
-                <p>{el.name}</p>
-                <p>${el.price}</p>
+              <div className="flex flex-col items-center gap-2" key={el._id}>
+                <img
+                  src={el.image}
+                  className="h-[340px] self-stretch object-cover"
+                />
+                <p className="font-bold text-[#151875]">{el.name}</p>
+                <p className="font-semibold text-[#151875]">${el.price}</p>
               </div>
             );
           })}

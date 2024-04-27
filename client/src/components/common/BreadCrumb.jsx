@@ -9,7 +9,7 @@ function BreadCrumb(props) {
       <div className="flex gap-3 text-xs md:text-base">
         <p>Home</p>
         <p>Pages</p>
-        <p className="text-secondary">Product Details</p>
+        <p className="text-secondary">{props.title}</p>
       </div>
     </div>
   );
