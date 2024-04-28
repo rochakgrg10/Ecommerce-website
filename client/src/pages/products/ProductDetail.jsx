@@ -32,7 +32,7 @@ function ProductDetail() {
 
   return (
     <>
-      <BreadCrumb title="Related Products" />
+      <BreadCrumb title="Product Details" />
       <div className="container grid gap-4 p-6 shadow-xl md:grid-cols-2">
         <img
           src={product.image}

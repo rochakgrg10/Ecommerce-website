@@ -24,8 +24,9 @@ export default function Header() {
                 <CiMail className="inline-block" /> 092345234
               </p>
             </div>
-            <div className="">
+            <div className="flex gap-4">
               <Link to={"/login"}>login</Link>
+              <Link to={"/sidebar"}>Shop LeftSidebar</Link>
               <span className="ml-4">cart</span>
             </div>
           </nav>
