@@ -4,8 +4,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import BreadCrumb from "../components/common/BreadCrumb";
+import { setReduxUser } from "../redux/slice/userSlice";
+import { useDispatch } from "react-redux";
 
 function Login({ setUser }) {
+  const dispatch = useDispatch(); //we can only call redux functions via useDispatch()
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,7 +25,8 @@ function Login({ setUser }) {
       })
       .then((res) => {
         toast.success("success");
-        setUser(res.data.user);
+        // setUser(res.data.user);
+        dispatch(setReduxUser(res.data.user));
       })
       .catch((err) => {
         console.log(err);

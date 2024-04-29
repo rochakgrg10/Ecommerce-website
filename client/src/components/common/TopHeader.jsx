@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { CiMail } from "react-icons/ci";
+import { useSelector } from "react-redux";
+
 function TopHeader({ user, setUser }) {
+  let reduxUser = useSelector((store) => store.user.value);
+
   return (
     <div className="bg-primary">
       <nav className=" py-[14px] text-center font-josefin text-white sm:container sm:flex sm:justify-between">
@@ -14,6 +18,7 @@ function TopHeader({ user, setUser }) {
           </p>
         </div>
         <div className="flex gap-4">
+          <p>{JSON.stringify(reduxUser.name)}</p>
           <p>{user?.name}</p>
           {user ? (
             <p
