@@ -14,11 +14,17 @@ import ProductDetail from "./pages/products/ProductDetail";
 import Signup from "./pages/Signup";
 import LeftSideBar from "./pages/LeftSideBar";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+
 function App() {
+  const [user, setUser] = useState(null);
+
   const router = createBrowserRouter([
     {
       path: "",
-      element: <RootElement />,
+      element: <RootElement user={user} setUser={setUser} />,
       children: [
         {
           path: "/",
@@ -26,7 +32,7 @@ function App() {
         },
         {
           path: "login",
-          element: <Login />,
+          element: <Login setUser={setUser} />,
         },
         {
           path: "signup",
@@ -57,6 +63,7 @@ function App() {
     <>
       <div>
         <RouterProvider router={router} />
+        <ToastContainer />
       </div>
     </>
   );

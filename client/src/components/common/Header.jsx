@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { CiMail } from "react-icons/ci";
+
 import { CiSearch } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
+import TopHeader from "./TopHeader";
 
-export default function Header() {
+export default function Header({ user, setUser }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -14,23 +15,7 @@ export default function Header() {
   return (
     <>
       <header>
-        <div className="bg-primary">
-          <nav className=" py-[14px] text-center font-josefin text-white sm:container sm:flex sm:justify-between">
-            <div className="sm:flex sm:gap-4">
-              <p>
-                <CiMail className="inline-block" /> mhhasanul@gmail.com
-              </p>
-              <p>
-                <CiMail className="inline-block" /> 092345234
-              </p>
-            </div>
-            <div className="flex gap-4">
-              <Link to={"/login"}>login</Link>
-              <Link to={"/sidebar"}>Shop LeftSidebar</Link>
-              <span className="ml-4">cart</span>
-            </div>
-          </nav>
-        </div>
+        <TopHeader user={user} setUser={setUser} />
 
         <nav className="container justify-between   pb-[12px] pt-[18px] sm:flex ">
           <div className="flex w-full items-center justify-between lg:w-auto lg:gap-[90px]">
