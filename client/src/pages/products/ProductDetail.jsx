@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import BreadCrumb from "../../components/common/BreadCrumb";
+import { useSelector, useDispatch } from "react-redux";
+import { addCartItems } from "../../redux/slice/cartSlice";
 
 function ProductDetail() {
+  const dispatch = useDispatch();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
 
@@ -61,7 +64,12 @@ function ProductDetail() {
             tellus porttitor purus, et volutpat sit.
           </p>
           <div className="flex items-center justify-center gap-3">
-            <p className="font-bold text-[#151875]">Add To cart</p>
+            <button
+              onClick={() => dispatch(addCartItems(product))}
+              className="font-bold text-[#151875]"
+            >
+              Add To cart
+            </button>
 
             <CiHeart className="text-[#535399]" />
           </div>

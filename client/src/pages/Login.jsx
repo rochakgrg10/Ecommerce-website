@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -7,13 +7,17 @@ import BreadCrumb from "../components/common/BreadCrumb";
 import { setReduxUser } from "../redux/slice/userSlice";
 import { useDispatch } from "react-redux";
 
-function Login({ setUser }) {
+function Login() {
   const dispatch = useDispatch(); //we can only call redux functions via useDispatch()
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    localStorage.setItem("userData", JSON.stringify(formData));
+  }, [formData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

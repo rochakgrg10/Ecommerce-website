@@ -3,10 +3,10 @@ import { Link, Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function RootElement({ user, setUser }) {
+export default function RootElement() {
   return (
     <>
-      <Header user={user} setUser={setUser} />
+      <Header />
       <Outlet />
       <Footer />
     </>

@@ -6,7 +6,7 @@ import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import TopHeader from "./TopHeader";
 
-export default function Header({ user, setUser }) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -15,7 +15,7 @@ export default function Header({ user, setUser }) {
   return (
     <>
       <header>
-        <TopHeader user={user} setUser={setUser} />
+        <TopHeader />
 
         <nav className="container justify-between   pb-[12px] pt-[18px] sm:flex ">
           <div className="flex w-full items-center justify-between lg:w-auto lg:gap-[90px]">

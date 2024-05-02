@@ -50,33 +50,6 @@ function Home() {
     },
   ];
 
-  /*  let chairs = [
-    {
-      image: chair1,
-      title: "Cantilever chair 1",
-      code: "Y523201",
-      price: "$4000",
-    },
-    {
-      image: chair2,
-      title: "Cantilever chair 2",
-      code: "Y523202",
-      price: "$4400",
-    },
-    {
-      image: chair3,
-      title: "Cantilever chair 3",
-      code: "Y523203",
-      price: "$5500",
-    },
-    {
-      image: chair4,
-      title: "Cantilever chair 4",
-      code: "y-23244",
-      price: "$6700",
-    },
-  ]; */
-
   let latestProducts = [
     {
       image: "/assets/latestProduct1.png",
@@ -128,7 +101,7 @@ function Home() {
         .catch((err) => {
           throw new Error("Something went wrong");
         });
-    }, 2000);
+    }, 1000);
   }, []);
 
   return (
@@ -165,7 +138,7 @@ function Home() {
               <Product
                 _id={el._id}
                 image={el.image}
-                title={el.name}
+                name={el.name}
                 code={el.code}
                 price={el.price}
               />

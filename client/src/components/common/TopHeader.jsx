@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { CiMail } from "react-icons/ci";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { FaShoppingCart } from "react-icons/fa";
+import { logout, setReduxUser } from "../../redux/slice/userSlice";
 
-function TopHeader({ user, setUser }) {
+function TopHeader() {
   let reduxUser = useSelector((store) => store.user.value);
+  let cartItems = useSelector((store) => store.cart.value);
+  let dispatch = useDispatch();
 
   return (
     <div className="bg-primary">
@@ -18,11 +22,11 @@ function TopHeader({ user, setUser }) {
           </p>
         </div>
         <div className="flex gap-4">
-          <p>{JSON.stringify(reduxUser.name)}</p>
-          <p>{user?.name}</p>
-          {user ? (
+          <p>{JSON.stringify(reduxUser?.name)}</p>
+
+          {reduxUser ? (
             <p
-              onClick={() => setUser(null)}
+              onClick={() => dispatch(logout())}
               className="cursor-pointer hover:text-secondary"
             >
               Logout
@@ -33,7 +37,14 @@ function TopHeader({ user, setUser }) {
             </Link>
           )}
           <Link to={"/sidebar"}>ShopLeftSidebar</Link>
-          <span className="ml-4">cart</span>
+          <div className="flex">
+            <Link to={"/cart"}>
+              <FaShoppingCart />
+            </Link>
+            <div className="h-5 w-5 rounded-full border bg-secondary text-center">
+              {cartItems.length}
+            </div>
+          </div>
         </div>
       </nav>
     </div>

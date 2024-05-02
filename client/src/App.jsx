@@ -16,15 +16,18 @@ import LeftSideBar from "./pages/LeftSideBar";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+import Cart from "./pages/Cart";
+// import { useEffect } from "react";
 
 function App() {
-  const [user, setUser] = useState(null);
+  /*  useEffect(() => {
+    localStorage.getItem("userData");
+  }); */
 
   const router = createBrowserRouter([
     {
       path: "",
-      element: <RootElement user={user} setUser={setUser} />,
+      element: <RootElement />,
       children: [
         {
           path: "/",
@@ -32,7 +35,7 @@ function App() {
         },
         {
           path: "login",
-          element: <Login setUser={setUser} />,
+          element: <Login />,
         },
         {
           path: "signup",
@@ -41,6 +44,10 @@ function App() {
         {
           path: "sidebar",
           element: <LeftSideBar />,
+        },
+        {
+          path: "cart",
+          element: <Cart />,
         },
         {
           path: "products",
