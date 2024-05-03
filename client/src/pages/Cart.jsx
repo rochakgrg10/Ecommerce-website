@@ -1,9 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BreadCrumb from "../components/common/BreadCrumb";
 import { RxCross2 } from "react-icons/rx";
+import { resetItems, increaseQuantity } from "../redux/slice/cartSlice";
 
 function Cart() {
+  let dispatch = useDispatch();
   let cartItems = useSelector((store) => store.cart.value);
   return (
     <>
@@ -34,8 +36,13 @@ function Cart() {
               <span className="w-[20px] cursor-pointer rounded-full border">
                 -
               </span>
-              <span className="w-[20px] rounded-full border">0</span>
-              <span className="w-[20px] cursor-pointer rounded-full border">
+              <span className="w-[20px] rounded-full border">
+                {el.quantity}
+              </span>
+              <span
+                onClick={() => dispatch(increaseQuantity(cartItems))}
+                className="w-[20px] cursor-pointer rounded-full border"
+              >
                 +
               </span>
             </div>
@@ -50,7 +57,10 @@ function Cart() {
           <button className="bg-[#FB2E86] px-4 py-2 font-semibold text-white">
             Update Cart
           </button>
-          <button className="bg-[#FB2E86] px-4 py-2 font-semibold text-white">
+          <button
+            onClick={() => dispatch(resetItems())}
+            className="bg-[#FB2E86] px-4 py-2 font-semibold text-white"
+          >
             Clear Cart
           </button>
         </div>

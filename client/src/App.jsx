@@ -23,6 +23,7 @@ import SellerProducts from "./pages/seller/SellerProducts";
 import AddProducts from "./pages/seller/AddProducts";
 import { useDispatch } from "react-redux";
 import { setReduxUser } from "./redux/slice/userSlice";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "sellers",
+        element: <ProtectedRoute />,
         children: [
           {
             path: "products",
@@ -79,6 +81,10 @@ const router = createBrowserRouter([
             element: <ProductDetail />,
           },
         ],
+      },
+      {
+        path: "*",
+        element: <h2>Page not found</h2>,
       },
     ],
   },
