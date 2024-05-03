@@ -17,7 +17,7 @@ export default function Header() {
       <header>
         <TopHeader />
 
-        <nav className="container justify-between   pb-[12px] pt-[18px] sm:flex ">
+        <nav className="container pb-[12px] pt-[18px]">
           <div className="flex w-full items-center justify-between lg:w-auto lg:gap-[90px]">
             <a
               id="logo"
@@ -35,48 +35,39 @@ export default function Header() {
               >
                 <RxCross2 />
               </button>
-              <Link to={"/"} className="text-secondary">
-                home
-              </Link>
-              <a href="" className="hover:text-secondary">
-                products
-              </a>
-              <a href="" className="hover:text-secondary">
-                pages
-              </a>
-              <a href="" className="hover:text-secondary">
-                blogs
-              </a>
-              <a href="" className="hover:text-secondary">
-                members
-              </a>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <Link to={"/"} className="text-secondary">
+                  home
+                </Link>
+                <Link to={"/products"} className="hover:text-secondary">
+                  products
+                </Link>
+                <Link
+                  to={"/sellers/products"}
+                  className="active:text-secondary"
+                >
+                  Seller-Products
+                </Link>
+                <Link to={"/sellers/products/add"}>Add-Products</Link>
+                <Link className="hover:text-secondary">pages</Link>
+                <Link className="hover:text-secondary">blogs</Link>
+                <Link className="hover:text-secondary">members</Link>
+              </div>
             </div>
-            {/* {isMenuOpen && (
-              <>
-              <ul>
-              <li>home</li>
-              <li>staic</li>
-              </ul>
-              <button onClick={toggleMenu}>close</button>
-              </>
-            )} */}
             <IoMenu
               onClick={toggleMenu}
               className="cursor-pointer text-3xl md:hidden"
             />
+            <form className="hidden lg:flex">
+              <input
+                className="w-[100px] border border-primary-light px-2 py-1 focus:border-secondary focus:outline-none focus:transition-all "
+                type="text"
+              />
+              <button className="bg-secondary px-3">
+                <CiSearch className="text-white" />
+              </button>
+            </form>
           </div>
-
-          <form className="hidden lg:flex">
-            <input
-              className="border border-primary-light px-2
-              py-1
-             focus:border-secondary focus:outline-none focus:transition-all "
-              type="text"
-            />
-            <button className="bg-secondary px-3">
-              <CiSearch className="text-white" />
-            </button>
-          </form>
         </nav>
         {isMenuOpen && (
           <div

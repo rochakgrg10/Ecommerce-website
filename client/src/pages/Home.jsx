@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import Header from "../components/common/Header";
 import Banner from "../components/home/Banner";
 import Product from "../components/home/Product";
 import LatestProduct from "../components/home/LatestProduct";

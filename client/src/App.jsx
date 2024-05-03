@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
   Route,
   Link,
 } from "react-router-dom";
+import axios from "axios";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import RootElement from "./components/common/RootElement";
@@ -17,61 +19,109 @@ import LeftSideBar from "./pages/LeftSideBar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cart from "./pages/Cart";
-// import { useEffect } from "react";
+import SellerProducts from "./pages/seller/SellerProducts";
+import AddProducts from "./pages/seller/AddProducts";
+import { useDispatch } from "react-redux";
+import { setReduxUser } from "./redux/slice/userSlice";
+
+const router = createBrowserRouter([
+  {
+    path: "",
+    element: <RootElement />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <Signup />,
+      },
+      {
+        path: "sidebar",
+        element: <LeftSideBar />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "sellers",
+        children: [
+          {
+            path: "products",
+            children: [
+              {
+                path: "",
+                element: <SellerProducts />,
+              },
+              {
+                path: "add",
+                element: <AddProducts />,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: "products",
+        children: [
+          {
+            path: "",
+            element: <Products />,
+          },
+          {
+            path: ":slug",
+            element: <ProductDetail />,
+          },
+        ],
+      },
+    ],
+  },
+]);
 
 function App() {
-  /*  useEffect(() => {
-    localStorage.getItem("userData");
-  }); */
-
-  const router = createBrowserRouter([
-    {
-      path: "",
-      element: <RootElement />,
-      children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "login",
-          element: <Login />,
-        },
-        {
-          path: "signup",
-          element: <Signup />,
-        },
-        {
-          path: "sidebar",
-          element: <LeftSideBar />,
-        },
-        {
-          path: "cart",
-          element: <Cart />,
-        },
-        {
-          path: "products",
-          children: [
-            {
-              path: "",
-              element: <Products />,
-            },
-            {
-              path: ":slug",
-              element: <ProductDetail />,
-            },
-          ],
-        },
-      ],
-    },
-  ]);
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      axios
+        .get("https://ecommerce-sagartmg2.vercel.app/api/users/get-user", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          dispatch(setReduxUser(res.data));
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false);
+        });
+    } else {
+      console.log("there is no token available");
+      setIsLoading(false);
+    }
+  }, []);
 
   return (
     <>
-      <div>
-        <RouterProvider router={router} />
-        <ToastContainer />
-      </div>
+      {isLoading ? (
+        <div className="flex h-screen items-center justify-center">
+          Loading...
+        </div>
+      ) : (
+        <div>
+          <RouterProvider router={router} />
+          <ToastContainer />
+        </div>
+      )}
     </>
   );
 }

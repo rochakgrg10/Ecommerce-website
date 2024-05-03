@@ -15,10 +15,6 @@ function Login() {
     password: "",
   });
 
-  useEffect(() => {
-    localStorage.setItem("userData", JSON.stringify(formData));
-  }, [formData]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -30,7 +26,8 @@ function Login() {
       .then((res) => {
         toast.success("success");
         // setUser(res.data.user);
-        dispatch(setReduxUser(res.data.user));
+        dispatch(setReduxUser(res.data.user)); //change redux user value
+        localStorage.setItem("token", res.data.access_token);
       })
       .catch((err) => {
         console.log(err);
