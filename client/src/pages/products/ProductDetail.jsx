@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import BreadCrumb from "../../components/common/BreadCrumb";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addCartItems } from "../../redux/slice/cartSlice";
 
 function ProductDetail() {

@@ -39,10 +39,7 @@ function Cart() {
               <span className="w-[20px] rounded-full border">
                 {el.quantity}
               </span>
-              <span
-                onClick={() => dispatch(increaseQuantity(cartItems))}
-                className="w-[20px] cursor-pointer rounded-full border"
-              >
+              <span className="w-[20px] cursor-pointer rounded-full border">
                 +
               </span>
             </div>

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -7,27 +7,30 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addCartItems: (state, action) => {
-      //   state.value = ["one", "two", "three"];
-      let product = action.payload;
-      const { _id, name, image, price } = product;
+      let products = action.payload;
+      // let { name, _id, price, image } = product;
 
-      state.value.push({
+      /* check if that _id already exists   */
+      /*  state.value.push({
         quantity: 1,
-        _id,
         name,
+        _id,
         price,
         image,
-      });
-      /* if (state.value.find((el) => el._id == _id)) {
-        state.value.push({
-          ...state.value,
-          quantity: quantity++,
+      }); */
+      let temp = [...state.value];
+      if (temp.find((el) => el._id == products._id)) {
+        temp = temp.map((el) => {
+          if (el._id == products._id) {
+            return { ...el, quantity: el.quantity + 1 };
+          }
+          return el;
         });
-      } */
-    },
-    increaseQuantity: (state, action) => {
-      let products = action.payload;
-      console.log(state.value);
+      } else {
+        temp.push({ ...products, quantity: 1 });
+      }
+      state.value = temp;
+      console.log(temp);
     },
     resetItems: (state, action) => {
       state.value = [];
@@ -36,6 +39,6 @@ export const cartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addCartItems, resetItems, increaseQuantity } = cartSlice.actions;
+export const { addCartItems, resetItems } = cartSlice.actions;
 
 export default cartSlice.reducer;
