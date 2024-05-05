@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { CiSearch } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
@@ -7,6 +7,9 @@ import { RxCross2 } from "react-icons/rx";
 import TopHeader from "./TopHeader";
 
 export default function Header() {
+  const location = useLocation();
+  const { pathname } = location;
+  console.log(pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {

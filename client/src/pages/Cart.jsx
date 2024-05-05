@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BreadCrumb from "../components/common/BreadCrumb";
 import { RxCross2 } from "react-icons/rx";
-import { resetItems, increaseQuantity } from "../redux/slice/cartSlice";
+import { resetItems } from "../redux/slice/cartSlice";
 
 function Cart() {
   let dispatch = useDispatch();
