@@ -2,7 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BreadCrumb from "../components/common/BreadCrumb";
 import { RxCross2 } from "react-icons/rx";
-import { resetItems } from "../redux/slice/cartSlice";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeItem,
+  resetItems,
+} from "../redux/slice/cartSlice";
 
 function Cart() {
   let dispatch = useDispatch();
@@ -21,8 +26,12 @@ function Cart() {
         {cartItems.map((el) => (
           <div className=" grid grid-cols-5  justify-items-center gap-2 border-b-2 border-b-[#E1E1E4] p-2">
             <div className="relative flex">
-              <img src={el.image} className="self-stretch" />
-              <RxCross2 className="absolute -right-1 -top-1 h-[20px] w-[20px] cursor-pointer rounded-full bg-black p-1 text-base text-white" />
+              <div>
+                <img src={el.image} className="self-stretch" />
+              </div>
+              <span onClick={() => dispatch(removeItem(el._id))}>
+                <RxCross2 className="absolute -right-1 -top-1 h-[20px] w-[20px] cursor-pointer rounded-full bg-red-600 p-1 text-base text-white" />
+              </span>
             </div>
             <div className="text-bold text-xs text-[#A1A8C1] md:text-base">
               <p className="font-bold text-black">{el.name}</p>
@@ -33,19 +42,25 @@ function Cart() {
               <p>${el.price}</p>
             </div>
             <div className="flex items-center text-center text-xl font-semibold">
-              <span className="w-[20px] cursor-pointer rounded-full border">
+              <span
+                onClick={() => dispatch(decreaseQuantity(el._id))}
+                className="w-[20px] cursor-pointer rounded-full border"
+              >
                 -
               </span>
               <span className="w-[20px] rounded-full border">
                 {el.quantity}
               </span>
-              <span className="w-[20px] cursor-pointer rounded-full border">
+              <span
+                onClick={() => dispatch(increaseQuantity(el._id))}
+                className="w-[20px] cursor-pointer rounded-full border"
+              >
                 +
               </span>
             </div>
 
             <div className="self-center">
-              <p>£219.00</p>
+              <p>${el.quantity * el.price}</p>
             </div>
           </div>
         ))}

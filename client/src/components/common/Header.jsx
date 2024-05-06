@@ -5,11 +5,12 @@ import { CiSearch } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import TopHeader from "./TopHeader";
-
+import { useSelector } from "react-redux";
+import { SELLER } from "../../constant/role";
 export default function Header() {
+  const user = useSelector((store) => store.user.value);
   const location = useLocation();
   const { pathname } = location;
-  console.log(pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -39,19 +40,34 @@ export default function Header() {
                 <RxCross2 />
               </button>
               <div className="flex flex-col gap-2 sm:flex-row">
-                <Link to={"/"} className="text-secondary">
+                <Link
+                  to={"/"}
+                  className={`${pathname == "/" ? "text-secondary" : "hover:text-secondary"}`}
+                >
                   home
                 </Link>
-                <Link to={"/products"} className="hover:text-secondary">
+                <Link
+                  to={"/products"}
+                  className={`${pathname == "/products" ? "text-secondary" : "hover:text-secondary"}`}
+                >
                   products
                 </Link>
-                <Link
-                  to={"/sellers/products"}
-                  className="active:text-secondary"
-                >
-                  Seller-Products
-                </Link>
-                <Link to={"/sellers/products/add"}>Add-Products</Link>
+                {user && user.role == SELLER && (
+                  <>
+                    <Link
+                      to={"/sellers/products"}
+                      className={`${pathname == "/sellers/products" ? "text-secondary" : "hover:text-secondary"}`}
+                    >
+                      Seller-Products
+                    </Link>
+                    <Link
+                      to={"/sellers/products/add"}
+                      className={`${pathname == "/sellers/products/add" ? "text-secondary" : "hover:text-secondary"}`}
+                    >
+                      Add-Products
+                    </Link>
+                  </>
+                )}
                 <Link className="hover:text-secondary">pages</Link>
                 <Link className="hover:text-secondary">blogs</Link>
                 <Link className="hover:text-secondary">members</Link>
