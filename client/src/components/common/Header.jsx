@@ -69,7 +69,12 @@ export default function Header() {
                   </>
                 )}
                 <Link className="hover:text-secondary">pages</Link>
-                <Link className="hover:text-secondary">blogs</Link>
+                <Link
+                  to={"/blogs"}
+                  className={`${pathname == "/blogs" ? "text-secondary" : "hover:text-secondary"}`}
+                >
+                  blogs
+                </Link>
                 <Link className="hover:text-secondary">members</Link>
               </div>
             </div>

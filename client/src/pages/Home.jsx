@@ -24,6 +24,7 @@ function Home() {
 
   let banners = [
     {
+      id: 1,
       background: "bg-banner1",
       label: "Best Furniture For Your Castle....",
       heading: " New Furniture Collection Trends in 2020",
@@ -32,6 +33,7 @@ function Home() {
       redirectUrl: "/blogs",
     },
     {
+      id: 2,
       background: "bg-banner2",
       label: "Second Furniture For Your Castle....",
       heading: " Second Furniture Collection Trends in 2020",
@@ -40,6 +42,7 @@ function Home() {
       redirectUrl: "/offers",
     },
     {
+      id: 3,
       background: "bg-banner3",
       label: "Third Furniture For Your Castle....",
       heading: " Third Furniture Collection Trends in 2020",
@@ -51,36 +54,42 @@ function Home() {
 
   let latestProducts = [
     {
+      id: 1,
       image: "/assets/latestProduct1.png",
       title: "Comfort Handy Craft",
       currentPrice: "$200",
       previousPrice: "$250",
     },
     {
+      id: 2,
       image: "/assets/latestProduct2.png",
       title: "Comfort Handy Craft 2",
       currentPrice: "$200",
       previousPrice: "$250",
     },
     {
+      id: 3,
       image: "/assets/latestProduct3.png",
       title: "Comfort Handy Craft 3",
       currentPrice: "$200",
       previousPrice: "$250",
     },
     {
+      id: 4,
       image: "/assets/latestProduct4.png",
       title: "Comfort Handy Craft 4",
       currentPrice: "$200",
       previousPrice: "$250",
     },
     {
+      id: 5,
       image: "/assets/latestProduct5.png",
       title: "Comfort Handy Craft 5",
       currentPrice: "$200",
       previousPrice: "$250",
     },
     {
+      id: 6,
       image: "/assets/latestProduct6.png",
       title: "Comfort Handy Craft 6",
       currentPrice: "$200",
@@ -110,6 +119,7 @@ function Home() {
           {banners.map((el) => {
             return (
               <Banner
+                key={el.id}
                 background={el.background}
                 label={el.label}
                 heading={el.heading}
@@ -135,6 +145,7 @@ function Home() {
           {products.map((el) => {
             return (
               <Product
+                key={el._id}
                 _id={el._id}
                 image={el.image}
                 name={el.name}
@@ -167,6 +178,7 @@ function Home() {
             {latestProducts.map((el) => {
               return (
                 <LatestProduct
+                  key={el.id}
                   image={el.image}
                   title={el.title}
                   currentPrice={el.currentPrice}

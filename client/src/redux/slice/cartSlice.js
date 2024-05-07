@@ -51,16 +51,10 @@ export const cartSlice = createSlice({
       const productId = action.payload;
       let temp = current(state.value);
       temp = temp.filter((el) => {
-        el._id !== productId;
+        return el._id != productId;
       });
-      console.log(temp);
-      // if (temp.find((el) => el._id == productId)) {
-      //   temp = temp.filter((el) => {
-      //     el._id != productId;
-      //   });
-      // }
-      // console.log(temp);
-      // state.value = temp;
+      state.value = temp;
+      console.log(`${productId} is removed`);
     },
     resetItems: (state, action) => {
       state.value = [];

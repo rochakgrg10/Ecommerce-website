@@ -24,7 +24,10 @@ function Cart() {
         </div>
 
         {cartItems.map((el) => (
-          <div className=" grid grid-cols-5  justify-items-center gap-2 border-b-2 border-b-[#E1E1E4] p-2">
+          <div
+            key={el._id}
+            className=" grid grid-cols-5  justify-items-center gap-2 border-b-2 border-b-[#E1E1E4] p-2"
+          >
             <div className="relative flex">
               <div>
                 <img src={el.image} className="self-stretch" />

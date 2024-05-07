@@ -25,6 +25,8 @@ import { useDispatch } from "react-redux";
 import { setReduxUser } from "./redux/slice/userSlice";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { BUYER, SELLER } from "./constant/role";
+import Forbidden from "./components/Forbidden";
+import Blog from "./pages/Blog";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "blogs",
+        element: <Blog />,
       },
       {
         path: "sellers",
@@ -85,7 +91,7 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <h2>Page not found</h2>,
+        element: <Forbidden />,
       },
     ],
   },
